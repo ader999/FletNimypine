@@ -18,8 +18,11 @@ class Product:
     tamano_alto: Optional[Decimal]
     presentacion: str
     costo_de_produccion: Decimal
-    procesos: List[dict]
-    impuestos: List[dict]
+    procesos: List[int]
+    impuestos: List[int]
+    formulacion: List[dict]
+    procesos_detalles: List[dict]
+    impuestos_detalles: List[dict]
 
     @classmethod
     def from_dict(cls, data):
@@ -39,5 +42,8 @@ class Product:
             presentacion=data.get('presentacion', ''),
             costo_de_produccion=Decimal(str(data.get('costo_de_produccion', 0))),
             procesos=data.get('procesos', []),
-            impuestos=data.get('impuestos', [])
+            impuestos=data.get('impuestos', []),
+            formulacion=data.get('formulacion', []),
+            procesos_detalles=data.get('procesos_detalles', []),
+            impuestos_detalles=data.get('impuestos_detalles', [])
         )

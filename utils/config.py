@@ -1,5 +1,5 @@
 class Config:
-    BASE_URL = "http://127.0.0.1:8000"  # Cambia esto para producción
+    BASE_URL = "https://nimypine.codeader.com"  # Cambia esto para producción
     API_PREFIX = "/api"
 
     @classmethod

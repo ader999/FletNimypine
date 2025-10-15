@@ -12,6 +12,7 @@ class LoginScreen:
     def build(self):
         return ft.Container(
             content=ft.Column([
+                ft.Image(src="assets/icono.png", width=100, height=100),
                 ft.Text("Iniciar Sesión", size=24, weight=ft.FontWeight.BOLD),
                 self.username_field,
                 self.password_field,
@@ -25,7 +26,8 @@ class LoginScreen:
                     on_click=lambda e: self.page.go("/register")
                 )
             ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
-            alignment=ft.alignment.center
+            alignment=ft.alignment.center,
+            margin=ft.margin.only(top=50)
         )
 
     def _handle_login(self, e):

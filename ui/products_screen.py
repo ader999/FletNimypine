@@ -2,25 +2,26 @@ import flet as ft
 from services.product_service import ProductService
 
 class ProductsScreen:
-    def __init__(self, page, user):
+    def __init__(self, page, user, on_product_click):
         self.page = page
         self.user = user
+        self.on_product_click = on_product_click
         self.products = []
-        self.products_list = ft.Column(scroll=ft.ScrollMode.AUTO)
+        self.products_list = ft.GridView(
+            expand=1,
+            runs_count=5,
+            max_extent=300,
+            child_aspect_ratio=1.0,
+            spacing=5,
+            run_spacing=5,
+        )
 
     def build(self):
-        return ft.Container(
-            content=ft.Column([
-                ft.Row([
-                    ft.Text(f"Bienvenido, {self.user.first_name}!", size=20),
-                    ft.ElevatedButton("Cerrar Sesión", on_click=self._handle_logout)
-                ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
-                ft.Text("Mis Productos", size=24, weight=ft.FontWeight.BOLD),
-                ft.ElevatedButton("Actualizar", on_click=self._load_products),
-                self.products_list
-            ]),
-            padding=20
-        )
+        return ft.Column([
+            ft.Text("Mis Productos", size=24, weight=ft.FontWeight.BOLD),
+            ft.ElevatedButton("Actualizar", on_click=self._load_products),
+            self.products_list,
+        ])
 
     def _load_products(self, e=None):
         self.products = ProductService.get_products()
@@ -44,12 +45,12 @@ class ProductsScreen:
                                 ft.Text(f"Stock: {product.stock_actual}", size=14),
                                 ft.Text(product.descripcion, size=12, color=ft.Colors.GREY)
                             ]),
-                            padding=10
+                            padding=10,
+                            on_click=lambda e, p=product: self.on_product_click(p)
                         )
                     )
                 )
 
     def _handle_logout(self, e):
-        from services.auth_service import AuthService
-        if AuthService.logout():
-            self.page.go("/login")
+        # This method is now handled by MainLayout
+        pass
