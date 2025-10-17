@@ -18,7 +18,8 @@ class ProductDetailScreen:
                     alignment=ft.MainAxisAlignment.START,
                 ),
                 ft.ListView(
-                    [
+                    expand=True,
+                    controls=[
                         ft.Text(f"Nombre: {self.product.nombre}", size=20, weight=ft.FontWeight.BOLD),
                         ft.Text(f"Descripción: {self.product.descripcion}", size=16),
                         ft.Text(f"Precio de Venta: ${self.product.precio_venta}", size=18, color=ft.Colors.GREEN),
@@ -92,7 +93,6 @@ class ProductDetailScreen:
                         ),
                     ],
                     spacing=10,
-                    auto_scroll=True,
                 ),
             ],
             expand=True,

@@ -17,11 +17,17 @@ class ProductsScreen:
         )
 
     def build(self):
-        return ft.Column([
-            ft.Text("Mis Productos", size=24, weight=ft.FontWeight.BOLD),
-            ft.ElevatedButton("Actualizar", on_click=self._load_products),
-            self.products_list,
-        ])
+        return ft.Container(
+            content=ft.Column([
+                ft.Text("Mis Productos", size=24, weight=ft.FontWeight.BOLD),
+                ft.ElevatedButton("Actualizar", on_click=self._load_products),
+                ft.Container(
+                    content=self.products_list,
+                    expand=True,
+                ),
+            ]),
+            expand=True
+        )
 
     def _load_products(self, e=None):
         self.products = ProductService.get_products()
