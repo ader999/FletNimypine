@@ -42,3 +42,8 @@ class AuthService:
             api_client.clear_token()
             return True
         return False
+
+    @staticmethod
+    def get_token():
+        """Devuelve el token de autenticación actual."""
+        return api_client.token
