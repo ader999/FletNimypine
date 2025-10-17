@@ -39,7 +39,7 @@ class LoginScreen:
             self.page.update()
             return
 
-        user, token = AuthService.login(username, password)
+        user = AuthService.login(username, password)
         if user:
             self.on_login_success(user)
         else:

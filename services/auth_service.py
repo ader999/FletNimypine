@@ -25,12 +25,15 @@ class AuthService:
             'username': username_or_email,
             'password': password
         }
-        response = api_client.post('/cuentas/login/', data)
+        response = api_client.post('/asistente/api-token-auth/', data)
         if response and 'token' in response:
-            api_client.set_token(response['token'])
-            user = User.from_dict(response['user'])
-            return user, response['token']
-        return None, None
+            token = response['token']
+            api_client.set_token(token)
+            # El endpoint de token no devuelve los datos del usuario,
+            # así que creamos un objeto User con la información disponible.
+            user = User(username=username_or_email, email=username_or_email, token=token)
+            return user
+        return None
 
     @staticmethod
     def logout():

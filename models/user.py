@@ -3,19 +3,20 @@ from typing import Optional
 
 @dataclass
 class User:
-    id: int
     username: str
     email: str
-    first_name: str
-    last_name: str
-    mipyme: Optional[dict]
-    es_admin_mipyme: bool
-    es_creador_contenido: bool
-    rol: str
-    avatar: Optional[str]
-    email_confirmado: bool
-    is_active: bool
-    date_joined: str
+    id: Optional[int] = None
+    first_name: Optional[str] = ""
+    last_name: Optional[str] = ""
+    mipyme: Optional[dict] = None
+    es_admin_mipyme: bool = False
+    es_creador_contenido: bool = False
+    rol: Optional[str] = None
+    avatar: Optional[str] = None
+    email_confirmado: bool = False
+    is_active: bool = True
+    date_joined: Optional[str] = None
+    token: Optional[str] = None
 
     @classmethod
     def from_dict(cls, data):
